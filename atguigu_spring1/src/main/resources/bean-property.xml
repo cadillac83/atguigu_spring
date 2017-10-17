@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+<!-- 容器默认会装载初始化所有bean -->
+
+	<!-- 配置一个 bean -->
+	<bean id="helloWorld2" class="com.atguigu3.spring.helloworld.dto.HelloWorld">
+		<!-- 为属性赋值 -->
+		<!-- 通过属性注入: 通过 setter 方法注入属性值 -->
+		<property name="user" value="Tom"></property>
+	</bean>
+
+
+</beans>

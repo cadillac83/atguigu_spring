@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="address" class="com.atguigu3.spring.autowire.dto.Address"
+		  p:city="Beijing" p:street="WuDaoKou"></bean>
+	<!--&lt;!&ndash; 抽象bean不能被ioc容器实例化，只能作继承配置 &ndash;&gt;-->
+	<!--<bean id="address" class="com.atguigu33.spring.autowire.dto.Address"-->
+		  <!--p:city="Beijing" p:street="WuDaoKou" abstract="true"></bean>-->
+
+	<!-- bean配置的继承：使用bean的parent 属性，指定继承哪个bean的配置 -->
+	<bean id="address2" parent="address" p:street="DaZhongsi"></bean>
+
+
+	<bean id="car" class="com.atguigu3.spring.autowire.dto.Car"
+		  p:brand="Audi" p:price="30000"></bean>
+	<!-- 要求再配置person时，必须有一个关联的car！换句话说，person这个bean，依赖于car这个bean ，如不声明，编译报错 ，如依赖多个bean，用逗号隔开-->
+	<bean id="person" class="com.atguigu3.spring.autowire.dto.Person"
+	p:name="Tom" p:address-ref="address2" depends-on="car"></bean>
+
+
+</beans>

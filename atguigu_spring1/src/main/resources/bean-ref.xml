@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+<!-- 容器默认会装载初始化所有bean -->
+	<bean id="job" class="com.atguigu3.spring.helloworld.dto.Company">
+		<property name="company" value="qianlong"></property>
+	</bean>
+
+	<bean id="user" class="com.atguigu3.spring.helloworld.dto.User">
+		<!-- 通过 ref 属性值指定当前属性指向哪一个 bean! -->
+		<property name="company" ref="job"></property>
+	</bean>
+
+
+</beans>

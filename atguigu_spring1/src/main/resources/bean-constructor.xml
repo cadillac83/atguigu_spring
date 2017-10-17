@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+<!-- 容器默认会装载初始化所有bean -->
+	<!-- 通过构造器注入属性值 -->
+	<bean id="helloWorld3" class="com.atguigu3.spring.helloworld.dto.HelloWorld">
+		<!-- 要求: 在 Bean 中必须有对应的构造器.  -->
+		<constructor-arg value="Mike"></constructor-arg>
+	</bean>
+
+	<!-- 若一个 bean 有多个构造器, 如何通过构造器来为 bean 的属性赋值 -->
+	<!-- 可以根据 index 和 value 进行更加精确的定位. (了解) -->
+	<bean id="car" class="com.atguigu3.spring.helloworld.dto.Car">
+		<constructor-arg value="KUGA" index="1"></constructor-arg>
+		<!--<constructor-arg value="ChangAnFord" index="0"></constructor-arg>-->
+        <!-- 若字面值中包含特殊字符, 则可以使用 DCDATA 来进行赋值. (了解) -->
+        <constructor-arg>
+            <value><![CDATA[<ATARZA>]]></value>
+        </constructor-arg>
+		<constructor-arg value="250000" type="float"></constructor-arg>
+	</bean>
+</beans>

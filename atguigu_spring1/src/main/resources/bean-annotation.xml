@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- 指定spring IOC容器扫描的包
+	resource-pattern="repository/*.class"  这个表示只扫描指定子包所有class，
+	resource-pattern 可以通过它，指定扫描资源
+		<context:component-scan base-package="com.atguigu33.context.annotation"
+		resource-pattern="repository/*.class"></context:component-scan>
+
+	<context:include-filter> 子节点表示要包含的目标类
+	<context:exclude-filter> 子节点表示要排除在外的目标类
+
+	<context:component-scan base-package="com.atguigu33.context.annotation">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan>
+
+	<context:component-scan base-package="com.atguigu33.context.annotation" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan>
+
+	type值：
+	annotation ： com.atuigu.XxxAnnotation  所有标注了XxxAnnotation的类。该类采用目标类是否标注了某个注解进行过滤
+	assinable： com.atguigu33.XxxService   所有继承或者扩展XxxService的类，该类型采用目标类是否继承或者扩展某个特定类进行过滤
+	aspectj：   com.atguigu33..*Service+  所有类名以Service结束的类及继承或扩展他们的类，采用AspejctJ进行过滤
+	regex：    com.\atguigu3\.anno\..*   所有com.atguigu3.anno包下的类，该类型采用正则表达式根据类的类名进行过滤
+	custom：	   com.atguigu33.XxxTypeFilter 采用XxxTypeFilter通过代码方式定义过滤原则，必须实现org.springframework.core.TypeFilter接口
+
+	<context:component-scan base-package="com.atguigu33.context.annotation">
+		<context:exclude-filter type="assignable" expression="com.atguigu33.context.annotation.repository.UserRepository"/>
+	</context:component-scan>
+
+		<context:component-scan base-package="com.atguigu33.context.annotation" use-default-filters="false">
+		<context:include-filter type="assignable" expression="com.atguigu33.context.annotation.repository.UserRepository"/>
+	</context:component-scan>
+	-->
+	<context:component-scan base-package="com.atguigu3.context.annotation">
+	</context:component-scan>
+</beans>

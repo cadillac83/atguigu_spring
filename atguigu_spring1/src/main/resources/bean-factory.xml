@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+		<!--
+		Spring 中有两种类型的 Bean, 一种是普通Bean, 另一种是工厂Bean, 即FactoryBean.
+		工厂 Bean 跟普通Bean不同, 其返回的对象不是指定类的一个实例, 其返回的是该工厂 Bean 的 getObject 方法所返回的对象
+		-->
+
+	<!-- 通过静态工厂方法来配置bean，注意不是配置静态工厂方法实例，而是配置bean实例 -->
+	<!--
+	 class属性：指向静态工厂方法的名字
+	 factory-method：指向静态工厂方法的全类名
+	 constructor-arg 如有传参数，用他
+	 -->
+	<bean id="car1" class="com.atguigu3.spring.factory.StaticCarFactory"
+	factory-method="getCar">
+		<constructor-arg value="Audi"></constructor-arg>
+	</bean>
+
+	<!-- 配置工厂的实例 -->
+	<!--
+	 factory-bean 属性： 指向实例工厂方法的bean
+	 factory-method：指向静态工厂方法的名字
+	 	 constructor-arg 如有传参数，用他
+	 -->
+	<bean id="carFactory" class="com.atguigu3.spring.factory.InstanceCarFactory"></bean>
+	<!-- 通过实例工厂方法来配置bean -->
+	<bean id="car2" factory-bean="carFactory" factory-method="getCar">
+		<constructor-arg value="Ford"></constructor-arg>
+	</bean>
+
+</beans>

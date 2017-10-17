@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+<!-- 容器默认会装载初始化所有bean -->
+	<bean id="car" class="com.atguigu3.spring.helloworld.dto.Car">
+		<constructor-arg value="KUGA" index="1"></constructor-arg>
+		<constructor-arg value="ChangAnFord" index="0"></constructor-arg>
+		<constructor-arg value="250000" type="float"></constructor-arg>
+	</bean>
+	<bean id="car2" class="com.atguigu3.spring.helloworld.dto.Car">
+		<constructor-arg value="changan" index="1"></constructor-arg>
+		<constructor-arg value="ChangAnFord" index="0"></constructor-arg>
+		<constructor-arg value="250000" type="float"></constructor-arg>
+	</bean>
+	<!-- 装配集合属性 -->
+	<bean id="user" class="com.atguigu3.spring.helloworld.dto.User">
+		<property name="userName" value="Jack"></property>
+		<property name="cars">
+			<!-- 使用 list 元素来装配集合属性 -->
+			<list>
+				<ref bean="car"/>
+				<ref bean="car2"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>

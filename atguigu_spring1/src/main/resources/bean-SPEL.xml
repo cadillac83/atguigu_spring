@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- 测试 SpEL: 可以为属性进行动态的赋值(了解) -->
+
+	<!-- 1.引用其他对象  通过value 属性spEL 配置Bean 之间的引用关系-->
+	<!-- 2.引用其他对象的属性 -->
+	<!-- 3.通过value属性和spEl配置 people属性值为另一个bean的方法的返回值-->
+	<!-- 4.方法的连缀 -->
+	<!-- 5.支持运算符号、逻辑运算符号 -->
+	<!-- 6.调用静态方法或静态属性：通过 T() 调用一个类的静态方法，它将返回一个 Class Object，然后再调用相应的方法或属性： -->
+
+	<bean id="address" class="com.atguigu3.spring.spel.dto.Address">
+		<!-- 使用spel为属性赋一个字面值spel -->
+		<property name="city" value="#{'Beijing'}"></property>
+		<property name="street" value="WuDaoKou"></property>
+	</bean>
+
+	<bean id="car" class="com.atguigu3.spring.spel.dto.Car">
+		<property name="brand" value="Audi"></property>
+		<property name="price" value="500000"></property>
+		<!-- 6.调用静态方法或静态属性：通过 T() 调用一个类的静态方法，它将返回一个 Class Object，然后再调用相应的方法或属性： -->
+		<property name="typePerimeter" value="#{T(java.lang.Math).PI * 80}"></property>
+	</bean>
+
+	<bean id="person" class="com.atguigu3.spring.spel.dto.Person">
+		<!--1.引用其他对象  通过value 属性spEL 配置Bean 之间的引用关系-->
+		<property name="car" value="#{car}"></property>
+		<!--2.引用其他对象的属性-->
+		<property name="city" value="#{address.city}"></property>
+		<property name="info" value="#{car.price > 30000 ? '金领':'白领'}"></property>
+	</bean>
+
+
+
+
+</beans>

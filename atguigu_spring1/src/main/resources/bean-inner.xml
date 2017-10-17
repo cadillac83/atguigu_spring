@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+<!-- 容器默认会装载初始化所有bean -->
+	<bean id="job" class="com.atguigu3.spring.helloworld.dto.Company">
+		<property name="company" value="qianlong"></property>
+	</bean>
+
+	<!-- 声明使用内部 bean -->
+	<bean id="user" class="com.atguigu3.spring.helloworld.dto.User">
+		<property name="company">
+			<!-- 内部 bean, 类似于匿名内部类对象. 不能被外部的 bean 来引用, 也没有必要设置 id 属性 -->
+			<bean class="com.atguigu3.spring.helloworld.dto.Company">
+				<property name="company" value="内部bean"></property>
+			</bean>
+		</property>
+	</bean>
+
+
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean默认是单例的，
+	1.scope=singleton
+	所以如果同时
+	    Car car = (Car) ctx.getBean("car");
+        Car car2 = (Car) ctx.getBean("car");
+        这个结果是true
+    2.如果是 scope=prototype 则返回false，
+        因为每一个对象，都是重新生成的，非单例
+    3.scope=request  每次http请求都会创建一个新的bean，该作用域适用于WebApplicationContext
+    4.session 同一个HTTP Session 共享一个Bean，不同的HTTP Session使用不同的bean，该作用域仅适用于WebApplicationContext环境
+        -->
+	  <bean id="car" class="com.atguigu3.spring.autowire.dto.Car"
+	  p:brand="Audi" p:price="30000"></bean>
+
+</beans>

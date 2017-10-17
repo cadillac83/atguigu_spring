@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+<!-- 容器默认会装载初始化所有bean -->
+	<!-- 配置 bean -->
+	<bean id="dao5" class="com.atguigu3.spring.ref.Dao"></bean>
+
+	<bean id="service" class="com.atguigu3.spring.ref.Service">
+		<!-- 通过 ref 属性值指定当前属性指向哪一个 bean! -->
+		<property name="dao" ref="dao5"></property>
+	</bean>
+
+	<!-- 级联属性 -->
+	<bean id="action" class="com.atguigu3.spring.ref.Action">
+		<property name="service" ref="service"></property>
+		<!-- 设置级联属性(了解) -->
+		<property name="service.dao.dataSource" value="DBCP2"></property>
+		<!-- 为 Dao 的 dataSource 属性赋值为 null, 若某一个 bean 的属性值不是 null, 使用时需要为其设置为 null(了解) -->
+		<!--<property name="service.dao.dataSource"><null/></property>-->
+	</bean>
+
+
+</beans>

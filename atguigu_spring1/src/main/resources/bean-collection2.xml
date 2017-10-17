@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+<!-- 容器默认会装载初始化所有bean -->
+	<!-- 声明集合类型的 bean -->
+	<util:list id="cars">
+		<ref bean="car"/>
+		<ref bean="car2"/>
+	</util:list>
+
+	<bean id="car" class="com.atguigu3.spring.helloworld.dto.Car">
+		<constructor-arg value="KUGA" index="1"></constructor-arg>
+		<constructor-arg value="ChangAnFord" index="0"></constructor-arg>
+		<constructor-arg value="250000" type="float"></constructor-arg>
+	</bean>
+	<bean id="car2" class="com.atguigu3.spring.helloworld.dto.Car">
+		<constructor-arg value="changan" index="1"></constructor-arg>
+		<constructor-arg value="ChangAnFord" index="0"></constructor-arg>
+		<constructor-arg value="250000" type="float"></constructor-arg>
+	</bean>
+	<!-- 声明集合类型的 bean -->
+	<bean id="user2" class="com.atguigu3.spring.helloworld.dto.User">
+		<property name="userName" value="Rose"></property>
+		<!-- 引用外部声明的 list -->
+		<property name="cars" ref="cars"></property>
+		<!-- map形式 -->
+		<!--<property name="cars">-->
+			<!--<map>-->
+				<!--<entry key="AA" value-ref="car"></entry>-->
+				<!--<entry key="BB" value-ref="car2"></entry>-->
+			<!--</map>-->
+		<!--</property>-->
+	</bean>
+
+</beans>

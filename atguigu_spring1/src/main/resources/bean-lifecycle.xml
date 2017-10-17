@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- 设定初始化函数和销毁函数对应名称  destroy-method这个要关闭容器的时候才会调用 ctx.close-->
+	<bean id="car" class="com.atguigu3.spring.lifecycle.dto.Car"
+		init-method="init" destroy-method="destroy">
+		<property name="brand" value="Audi"></property>
+	</bean>
+	<!-- Bean 后置处理器允许在调用初始化方法前后对 Bean 进行额外的处理.
+	Bean 后置处理器对 IOC 容器里的所有 Bean 实例逐一处理, 而非单一实例.
+ 	-->
+	<!--实现BeanPostProcessor接口，并具体实现
+	postProcessBeforeInitialization(Object bean, String beanName)  init-method之前被调用
+	postProcessAfterInitialization(Object bean, String beanName)   destroy-method之后被调用
+	bean ： bean实例本身
+	beanName： IOC容器配置的bean 的名称
+	 -->
+	<!-- 配置bean的后置处理器 不需要配置id，IOC容器自动识别是一个BeanPostProcessor-->
+	<bean class="com.atguigu3.spring.lifecycle.MyBeanPostProcessor"></bean>
+
+</beans>
